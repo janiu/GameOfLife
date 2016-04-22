@@ -2,13 +2,10 @@ var table;
 var table2;
 var n = 50;
 var m = 50;
+
 function execute() {
-
 	createTable();
-
-	 draw2();
-	//var a = countActiveNeighbours2(49, 49);
-	//console.log(a);
+	draw2();
 }
 
 function createTable() {
@@ -20,32 +17,30 @@ function createTable() {
 	for (i = 0; i < n; i++) {
 		table2[i] = new Array(m);
 	}
-
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			// table[i][j] = Math.round(Math.random());
-			table[i][j] = 0;
+			table[i][j] = Math.round(Math.random());
+			// table[i][j] = 0;
 		}
 	}
 
-//	table[20][20] = 1;    //glider
-//	table[21][20] = 1;
-//	table[22][20] = 1;
-//	table[20][21] = 1;
-//	table[21][22] = 1;
-	
-//	table[20][21] = 1;		//oscylator  
-//	table[20][22] = 1;  
-//	table[20][23] = 1;  
-	
-		
-//	table[20][21] = 1;  	//zaba
-//	table[20][22] = 1;  
-//	table[20][23] = 1; 
-//	table[21][22] = 1;		  
-//	table[21][23] = 1;  
-//	table[21][24] = 1;  
-	
+	// table[20][20] = 1; //glider
+	// table[21][20] = 1;
+	// table[22][20] = 1;
+	// table[20][21] = 1;
+	// table[21][22] = 1;
+
+	// table[20][21] = 1; //oscylator
+	// table[20][22] = 1;
+	// table[20][23] = 1;
+
+	// table[20][21] = 1; //zaba
+	// table[20][22] = 1;
+	// table[20][23] = 1;
+	// table[21][22] = 1;
+	// table[21][23] = 1;
+	// table[21][24] = 1;
+
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
 			table2[i][j] = table[i][j];
@@ -58,12 +53,9 @@ function updateTable2() {
 	var sum = 0;
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			sum = countActiveNeighbours1(i, j);
+			sum = countActiveNeighbours(i, j, table);
 			if (table[i][j] == 0) {
 				if (sum == 3) {
-					if(i==0){
-
-					}
 					table2[i][j] = 1;
 				} else {
 					table2[i][j] = 0;
@@ -76,16 +68,14 @@ function updateTable2() {
 				}
 			}
 		}
-		//break;
 	}
-
 }
 
 function updateTable1() {
 	var sum;
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			sum = countActiveNeighbours2(i, j);
+			sum = countActiveNeighbours(i, j, table2);
 			if (table2[i][j] == 0) {
 				if (sum == 3) {
 					table[i][j] = 1;
@@ -140,25 +130,7 @@ function draw2() {
 	setTimeout("draw()", 1000);
 }
 
-function countActiveNeighbours1(x, y) {
-	var sum = 0;
-	for (k = x - 1; k <= (x + 1); k++) {
-		for (l = y - 1; l <= (y + 1); l++) {
-			if (y == l && x == k) {
-				continue;
-			}
-			if (k == -1 || k == n || l == -1 || l == m) {
-				continue;
-			}
-			if (table[k][l] == 1) {
-				sum++;
-			}
-		}
-	}
-	return sum;
-}
-
-function countActiveNeighbours2(x, y) {
+function countActiveNeighbours(x, y, table) {
 	var sum = 0;
 	for (k = x - 1; k <= (x + 1); k++) {
 		for (l = y - 1; l <= (y + 1); l++) {
@@ -167,7 +139,7 @@ function countActiveNeighbours2(x, y) {
 			if (k == -1 || k == n || l == -1 || l == m) {
 				continue;
 			}
-			if (table2[k][l] == 1) {
+			if (table[k][l] == 1) {
 				sum++;
 			}
 		}
