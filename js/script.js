@@ -2,10 +2,12 @@ var table;
 var table2;
 var n = 50;
 var m = 50;
-
+var typeCondition;
 function execute() {
+	typeCondition = document.getElementById("periodic").checked;
 	createTable();
 	draw2();
+	
 }
 
 function createTable() {
@@ -62,8 +64,11 @@ function updateTable2() {
 	var sum = 0;
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			// sum = countActiveNeighboursNoPeriodic(i, j, table);
-			sum = countActiveNeighboursPeriodic(i, j, table);
+			if(typeCondition==true){
+				sum = countActiveNeighboursPeriodic(i, j, table);
+			}else{
+				sum = countActiveNeighboursNoPeriodic(i, j, table);
+			}
 			if (table[i][j] == 0) {
 				if (sum == 3) {
 					table2[i][j] = 1;
@@ -85,8 +90,11 @@ function updateTable1() {
 	var sum;
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			// sum = countActiveNeighboursNoPeriodic(i, j, table2);
-			sum = countActiveNeighboursPeriodic(i, j, table2);
+			if(typeCondition==true){
+				sum = countActiveNeighboursPeriodic(i, j, table2);
+			}else{
+				sum = countActiveNeighboursNoPeriodic(i, j, table2);
+			}
 			if (table2[i][j] == 0) {
 				if (sum == 3) {
 					table[i][j] = 1;

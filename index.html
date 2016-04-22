@@ -5,7 +5,17 @@
 <title>Title</title>
 <script type="text/javascript" src="js/script.js"></script>
 </head>
-<body onload="execute();">
+<body >
+<form>
+  What type do you prefer?<br>
+  <input type="radio" name="typeCondition" id="periodic" checked="checked">Periodic<br>
+  <input type="radio" name="typeCondition" id="no-periodic">No-periodic
+</form>
+
+<button id="buttonType" onclick="execute()">Execute</button>
+
+<p id="demo"></p>
+
 <canvas id="myCanvas" width="1000" height="1000" >
 
 </canvas>
