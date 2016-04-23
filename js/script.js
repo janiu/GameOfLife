@@ -1,13 +1,117 @@
 var table;
 var table2;
-var n = 50;
-var m = 50;
+var n;
+var m;
 var typeCondition;
+
+function random() {
+	n = document.getElementById("width").value;
+	m = document.getElementById("height").value;
+	table = new Array(n);
+	for (i = 0; i < n; i++) {
+		table[i] = new Array(m);
+	}
+	table2 = new Array(n);
+	for (i = 0; i < n; i++) {
+		table2[i] = new Array(m);
+	}
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			table[i][j] = Math.round(Math.random());
+		}
+	}
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			table2[i][j] = table[i][j];
+		}
+	}
+}
+
+function glider() {
+	n = document.getElementById("width").value;
+	m = document.getElementById("height").value;
+	table = new Array(n);
+	for (i = 0; i < n; i++) {
+		table[i] = new Array(m);
+	}
+	table2 = new Array(n);
+	for (i = 0; i < n; i++) {
+		table2[i] = new Array(m);
+	}
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			table[i][j] = 0;
+		}
+	}
+	table[10][3] = 1;
+	table[11][3] = 1;
+	table[12][3] = 1;
+	table[10][4] = 1;
+	table[11][5] = 1;
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			table2[i][j] = table[i][j];
+		}
+	}
+}
+
+function blinker() {
+	n = document.getElementById("width").value;
+	m = document.getElementById("height").value;
+	table = new Array(n);
+	for (i = 0; i < n; i++) {
+		table[i] = new Array(m);
+	}
+	table2 = new Array(n);
+	for (i = 0; i < n; i++) {
+		table2[i] = new Array(m);
+	}
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			table[i][j] = 0;
+		}
+	}
+	table[10][10] = 1;
+	table[10][11] = 1;
+	table[10][12] = 1;
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			table2[i][j] = table[i][j];
+		}
+	}
+}
+
+function block() {
+	n = document.getElementById("width").value;
+	m = document.getElementById("height").value;
+	table = new Array(n);
+	for (i = 0; i < n; i++) {
+		table[i] = new Array(m);
+	}
+	table2 = new Array(n);
+	for (i = 0; i < n; i++) {
+		table2[i] = new Array(m);
+	}
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			table[i][j] = 0;
+		}
+	}
+	table[10][10] = 1;
+	table[11][11] = 1;
+	table[10][11] = 1;
+	table[11][10] = 1;
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			table2[i][j] = table[i][j];
+		}
+	}
+}
+
 function execute() {
 	typeCondition = document.getElementById("periodic").checked;
-	createTable();
+	// createTable();
 	draw2();
-	
 }
 
 function createTable() {
@@ -21,8 +125,8 @@ function createTable() {
 	}
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			// table[i][j] = Math.round(Math.random());
-			table[i][j] = 0;
+			table[i][j] = Math.round(Math.random());
+			// table[i][j] = 0;
 		}
 	}
 
@@ -64,9 +168,9 @@ function updateTable2() {
 	var sum = 0;
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			if(typeCondition==true){
+			if (typeCondition == true) {
 				sum = countActiveNeighboursPeriodic(i, j, table);
-			}else{
+			} else {
 				sum = countActiveNeighboursNoPeriodic(i, j, table);
 			}
 			if (table[i][j] == 0) {
@@ -90,9 +194,9 @@ function updateTable1() {
 	var sum;
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			if(typeCondition==true){
+			if (typeCondition == true) {
 				sum = countActiveNeighboursPeriodic(i, j, table2);
-			}else{
+			} else {
 				sum = countActiveNeighboursNoPeriodic(i, j, table2);
 			}
 			if (table2[i][j] == 0) {
