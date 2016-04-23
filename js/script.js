@@ -110,59 +110,9 @@ function block() {
 
 function execute() {
 	typeCondition = document.getElementById("periodic").checked;
-	// createTable();
 	draw2();
 }
 
-function createTable() {
-	table = new Array(n);
-	for (i = 0; i < n; i++) {
-		table[i] = new Array(m);
-	}
-	table2 = new Array(n);
-	for (i = 0; i < n; i++) {
-		table2[i] = new Array(m);
-	}
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < m; j++) {
-			table[i][j] = Math.round(Math.random());
-			// table[i][j] = 0;
-		}
-	}
-
-	table[20][3] = 1; // glider
-	table[21][3] = 1;
-	table[22][3] = 1;
-	table[20][4] = 1;
-	table[21][5] = 1;
-
-	// table[20][20] = 1; // oscylator no-periodic
-	// table[20][21] = 1;
-	// table[20][22] = 1;
-
-	// table[20][0] = 1; // oscylator periodic
-	// table[20][1] = 1;
-	// table[20][49] = 1;
-
-	// table[20][21] = 1; //zaba
-	// table[20][22] = 1;
-	// table[20][23] = 1;
-	// table[21][22] = 1;
-	// table[21][23] = 1;
-	// table[21][24] = 1;
-
-	// table[20][0] = 1; //kwadrat
-	// table[20][1] = 1;
-	// table[20][48] = 1;
-	// table[20][49] = 1;
-
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < m; j++) {
-			table2[i][j] = table[i][j];
-		}
-	}
-
-}
 
 function updateTable2() {
 	var sum = 0;
@@ -272,7 +222,7 @@ function countActiveNeighboursPeriodic(x, y, table) {
 	var licznik = 0;
 	for (k = x - 1; k <= (x + 1); k++) {
 		for (l = y - 1; l <= (y + 1); l++) {
-			licznik++;
+//			licznik++;
 			if (y == l && x == k)
 				continue;
 			if (k == -1) {
@@ -306,11 +256,11 @@ function countActiveNeighboursPeriodic(x, y, table) {
 
 			if (table[k][l] == 1)
 				sum++;
-			if (licznik == 9)
-				break;
+//			if (licznik == 9)
+//				break;
 		}
-		if (licznik == 9)
-			break;
+//		if (licznik == 9)
+//			break;
 	}
 	return sum;
 }
